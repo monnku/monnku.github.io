@@ -7,6 +7,10 @@
   }
 }
 
+.icon {
+  display: inline-block;
+}
+
 .icon:hover{
   animation: rotate 0.5s linear infinite;
 }
