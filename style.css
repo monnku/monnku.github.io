@@ -13,10 +13,6 @@
   }
 }
 
-.icon{
-  animation: 0s forwards stop;
-}
-
 .icon:hover{
   animation: 0.5s infinite rotate;
 }
