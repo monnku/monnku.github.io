@@ -1,47 +1,96 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <title>monnku -もんくのホームページ-</title>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>&lt;/&gt; もんくのほーむぺーじ</title>
+<meta name="description" content="もんく/monnkuのホームページです.">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="60x60.png" class="icon">
-    <h1>monnku</h1>
-  </header>
 
-  <main>
-    <section class="hero">
-      <h2>もんくのホームページへようこそ！</h2>
-      <p>monnkuのサイトです。</p>
-      <p>:<span id="count"></span>回参照されました:</p>
-    </section>
+<!-- ===== ヘッダー ===== -->
+<header class="header">
+  <a class="logo" href="#top">
+    <img src="60x60.png" alt="logo" width="60" height="60">
+    <span class="logo-text">my<b>project</b>.dev</span>
+  </a>
 
-    <section class="content">
-      <h3>私について</h3>
-      <p>ちょっとプログラミングかじった学生。<br>
-        やりたいことをやりたいだけやる。<br>
-        趣味には妥協しない。<br>
-        ♂か♀かは延べない。ご想像にお任せ。<br>
-        日系日本人。総資産n円の金欠。</p>
-      <h3>できる言語</h3>
-      <p>pythonが一番得意<br>
-        js、html、cssも割とできる(html、cssは得意ではない)<br>
-        scratchは割愛。<br>
-        パソコンの知識は少ない。ぴちぴちの学生だからね。</p>
-      <h3>好き/嫌いなもの</h3>
-      <p>プログラミング<br>
-        ゲームは好きだけどそこまででもない。<br>
-        リゼロはストーリーが神。<br>
-        花粉は消えてほしい。あと口内炎も。</p>
-      <h3>その他</h3>
-      <p>おかねがほしい！</p>
-    </section>
-  </main>
-  <script src="test.js"></script>
-  <script src="https://counter.nanasi-rasi.net/counter.js"></script>
+  <button class="nav-toggle" aria-label="menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="nav">
+    <ul>
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#works">works</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== ヒーロー（ターミナル風） ===== -->
+<section class="hero" id="top">
+  <div class="terminal">
+    <div class="terminal-bar">
+      <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+      <span class="terminal-title">bash — 80x24</span>
+    </div>
+    <div class="terminal-body">
+      <p><span class="prompt">guest@localhost:~$</span> whoami</p>
+      <p class="out">monnku / Developer</p>
+      <p><span class="prompt">guest@localhost:~$</span> cat message.txt</p>
+      <p class="out"><span id="typing"></span><span class="cursor">_</span></p>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section">
+    <h2 class="section-title"><span class="hash">#</span> about</h2>
+    <div class="code-card">
+      <pre><code><span class="c-key">const</span> <span class="c-var">profile</span> = {
+  <span class="c-prop">name</span>:  <span class="c-str">"monnku/もんく"</span>,
+  <span class="c-prop">role</span>:  <span class="c-str">"Student"</span>,
+  <span class="c-prop">from</span>:  <span class="c-str">"Japan"</span>
+};</code></pre>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS（test.js の SKILLS を編集） ===== -->
+  <section id="skills" class="section">
+    <h2 class="section-title"><span class="hash">#</span> skills</h2>
+    <ul class="skill-list" id="skill-list"></ul>
+  </section>
+
+  <!-- ===== WORKS（test.js の WORKS を編集） ===== -->
+  <section id="works" class="section">
+    <h2 class="section-title"><span class="hash">#</span> works</h2>
+    <div class="cards" id="work-list"></div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section">
+    <h2 class="section-title"><span class="hash">#</span> contact</h2>
+    <div class="code-card">
+      <pre><code><span class="c-key">function</span> <span class="c-fn">contact</span>() {
+  <span class="c-key">return</span> <span class="c-str">"https://discord.gg/MthfRvvbSq"</span>;
+}</code></pre>
+    </div>
+    <p><a class="btn" href="https://discord.gg/MthfRvvbSq">Discord</a>
+       <a class="btn ghost" href="https://github.com/monnku/" target="_blank" rel="noopener">GitHub</a></p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p><span class="comment">/* &copy; <span id="year"></span> my project ;) */</span></p>
+</footer>
+
+<script src="test.js"></script>
 </body>
 </html>

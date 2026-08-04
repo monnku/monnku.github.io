@@ -1,55 +1,136 @@
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
+/* ===== 配色設定（ここを変えるとサイト全体の色が変わります） ===== */
+:root{
+  --bg:        #0d1117;
+  --bg-sub:    #161b22;
+  --line:      #30363d;
+  --text:      #c9d1d9;
+  --text-dim:  #8b949e;
+  --accent:    #58a6ff;
+  --key:       #ff7b72;
+  --str:       #a5d6ff;
+  --fn:        #d2a8ff;
+  --num:       #79c0ff;
+  --green:     #3fb950;
+  --font-code: "SFMono-Regular", Consolas, "Roboto Mono", "Courier New", monospace;
+  --max:       960px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--font-code); font-size:15px; line-height:1.9;
+  background-image:linear-gradient(var(--bg-sub) 1px, transparent 1px);
+  background-size:100% 32px;
+}
+a{color:var(--accent); text-decoration:none;}
+a:hover{text-decoration:underline;}
+code{font-family:var(--font-code);}
+
+/* ===== ヘッダー ===== */
+.header{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:10px 20px;
+  background:rgba(13,17,23,.85); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.logo{display:flex; align-items:center; gap:12px; color:var(--text);}
+.logo:hover{text-decoration:none;}
+.logo img{border-radius:8px; display:block;}
+.logo-text{font-size:17px; letter-spacing:.5px;}
+.logo-text b{color:var(--accent);}
+.nav ul{display:flex; gap:22px; list-style:none; margin:0; padding:0;}
+.nav a{color:var(--text-dim);}
+.nav a::before{content:"/ "; color:var(--line);}
+.nav a:hover, .nav a.active{color:var(--accent); text-decoration:none;}
+.nav-toggle{display:none;}
+
+/* ===== ターミナル風ヒーロー ===== */
+.hero{padding:56px 20px;}
+.terminal{
+  max-width:var(--max); margin:0 auto;
+  border:1px solid var(--line); border-radius:10px; overflow:hidden;
+  background:#010409; box-shadow:0 12px 40px rgba(0,0,0,.5);
+}
+.terminal-bar{
+  display:flex; align-items:center; gap:8px;
+  padding:9px 14px; background:var(--bg-sub); border-bottom:1px solid var(--line);
+}
+.dot{width:12px; height:12px; border-radius:50%; display:inline-block;}
+.dot.red{background:#ff5f56;} .dot.yellow{background:#ffbd2e;} .dot.green{background:#27c93f;}
+.terminal-title{margin-left:auto; color:var(--text-dim); font-size:12px;}
+.terminal-body{padding:20px; font-size:15px;}
+.terminal-body p{margin:.2em 0;}
+.prompt{color:var(--green);}
+.out{color:var(--text);}
+.cursor{color:var(--accent); animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* ===== レイアウト ===== */
+.container{max-width:var(--max); margin:0 auto; padding:0 20px 40px;}
+.section{padding:44px 0; border-top:1px dashed var(--line);}
+.section-title{font-size:22px; margin:0 0 18px; letter-spacing:1px;}
+.hash{color:var(--key); margin-right:.4em;}
+.lead{color:var(--text-dim);}
+.comment{color:#6e7681; font-style:italic;}
+
+/* ===== コードカード（行番号付き） ===== */
+.code-card{
+  position:relative; background:var(--bg-sub);
+  border:1px solid var(--line); border-left:3px solid var(--accent);
+  border-radius:8px; overflow-x:auto; margin:0 0 20px;
+}
+.code-card pre{margin:0; padding:16px 16px 16px 52px; counter-reset:ln;}
+.code-card code{display:block; white-space:pre;}
+.c-key{color:var(--key);} .c-str{color:var(--str);}
+.c-fn{color:var(--fn);}  .c-num{color:var(--num);}
+.c-var{color:var(--text);} .c-prop{color:var(--accent);}
+
+/* ===== スキル ===== */
+.skill-list{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
+.skill-list li{display:grid; grid-template-columns:150px 1fr 50px; align-items:center; gap:12px;}
+.skill-name::before{content:"- "; color:var(--text-dim);}
+.bar{height:8px; background:#21262d; border-radius:4px; overflow:hidden;}
+.bar > span{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--accent),var(--fn)); transition:width 1.2s ease;}
+.skill-val{color:var(--text-dim); font-size:13px; text-align:right;}
+
+/* ===== カード ===== */
+.cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px;}
+.card{
+  background:var(--bg-sub); border:1px solid var(--line); border-radius:8px;
+  padding:18px; transition:.2s;
+}
+.card:hover{transform:translateY(-4px); border-color:var(--accent);}
+.card h3{margin:0 0 6px; font-size:17px;}
+.card p{margin:0 0 12px; color:var(--text-dim); font-size:14px;}
+.tags{display:flex; flex-wrap:wrap; gap:6px;}
+.tag{font-size:12px; padding:2px 8px; border:1px solid var(--line); border-radius:99px; color:var(--num);}
+
+/* ===== ボタン ===== */
+.btn{
+  display:inline-block; margin:6px 8px 0 0; padding:9px 20px;
+  background:var(--accent); color:#0d1117; border-radius:6px; font-weight:bold;
+}
+.btn:hover{opacity:.85; text-decoration:none;}
+.btn.ghost{background:transparent; color:var(--accent); border:1px solid var(--accent);}
+
+/* ===== フッター ===== */
+.footer{border-top:1px solid var(--line); padding:22px; text-align:center; font-size:13px;}
+
+/* ===== スマホ ===== */
+@media (max-width:720px){
+  .nav-toggle{
+    display:block; width:40px; height:34px; background:none;
+    border:1px solid var(--line); border-radius:6px; cursor:pointer; padding:7px 8px;
   }
-  100%{
-    transform: rotate(360deg);
+  .nav-toggle span{display:block; height:2px; background:var(--text); margin:4px 0;}
+  .nav{
+    position:absolute; top:100%; left:0; right:0; display:none;
+    background:var(--bg-sub); border-bottom:1px solid var(--line);
   }
-}
-
-.icon {
-  display: inline-block;
-}
-
-.icon:hover{
-  animation: rotate 0.5s ease-in-out infinite;
-}
-
-body {
-  margin: 0;
-  font-family: 'Helvetica Neue', sans-serif;
-  background-color: #f2f2f2;
-  color: #1a1a1a;
-}
-
-header {
-  background-color: #1a1a1a;
-  color: white;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header h1 {
-  margin: 0;
-}
-
-.hero {
-  background-color: #333;
-  color: white;
-  padding: 80px 20px;
-  text-align: center;
-}
-
-.content {
-  padding: 40px 20px;
-  background-color: #e0e0e0;
-}
-
-footer {
-  background-color: #1a1a1a;
-  color: white;
-  text-align: center;
-  padding: 10px;
+  .nav.open{display:block;}
+  .nav ul{flex-direction:column; gap:0; padding:8px 20px;}
+  .nav li{padding:8px 0;}
+  .skill-list li{grid-template-columns:110px 1fr 44px;}
 }
