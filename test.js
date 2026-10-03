@@ -2,10 +2,10 @@ const MESSAGE = "Hello, World!";
 
 // スキル（名前, 習熟度 0-100）
 const SKILLS = [
-  { name: "HTML / CSS",  level: 70 },
+  { name: "HTML / CSS",  level: 50 },
   { name: "JavaScript",  level: 80 },
   { name: "Python",      level: 80 },
-  { name: "C / C++",     level: 50 }
+  { name: "C / C++",     level: 40 }
 ];
 
 // 作品（タイトル, 説明, タグ, リンク）
